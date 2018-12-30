@@ -34,11 +34,17 @@ class Builder
     protected $printerTags = [];
 
     /**
+     * @var bool
+     */
+    protected $passUnknownAsString = false;
+
+    /**
      * Builder constructor.
      *
      * @param string $path
+     * @param bool $passUnknownAsString
      */
-    public function __construct($path = null)
+    public function __construct($path = null, $passUnknownAsString = null)
     {
         if (is_null($path)) {
             $path = __DIR__.'/../../config/';
@@ -272,6 +278,9 @@ class Builder
                 if (!empty($this->tagsTypes[$tag])) {
                     return $this->tagsTypes[$tag];
                 } else {
+                    if ($this->passUnknownAsString) {
+                        return 'string';
+                    }
                     throw new CupsException('Type not found: "'.$tag.'".');
                 }
             }
