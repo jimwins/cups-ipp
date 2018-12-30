@@ -194,7 +194,12 @@ class Builder
                         break;
 
                     case 'enum':
-                        // @todo: alter specials types
+                        if (is_numeric($value)) {
+                            $value = pack('N', $value);
+                        } else {
+                            // @todo: handle values for enum types from RFC 8011
+                            throw new CupsException('Non-numeric enum value not supported for : "'.$name.'".');
+                        }
                         break;
 
                     case 'range_of_integers':
