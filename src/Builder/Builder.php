@@ -286,7 +286,7 @@ class Builder
         }
 
         if ($this->passUnknownAsString) {
-            return 'string';
+            return $this->tagsTypes['string'];
         }
 
         throw new CupsException('Property not found: "'.$name.'".');
