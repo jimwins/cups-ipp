@@ -51,6 +51,8 @@ class Builder
         }
 
         $this->init($path);
+
+        $this->passUnknownAsString = $passUnknownAsString;
     }
 
     /**
