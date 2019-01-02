@@ -36,15 +36,15 @@ class Builder
     /**
      * @var bool
      */
-    protected $passUnknownAsString = false;
+    protected $passUnknownAsKeyword = false;
 
     /**
      * Builder constructor.
      *
      * @param string $path
-     * @param bool $passUnknownAsString
+     * @param bool $passUnknownAsKeyword
      */
-    public function __construct($path = null, $passUnknownAsString = null)
+    public function __construct($path = null, $passUnknownAsKeyword = null)
     {
         if (is_null($path)) {
             $path = __DIR__.'/../../config/';
@@ -52,7 +52,7 @@ class Builder
 
         $this->init($path);
 
-        $this->passUnknownAsString = $passUnknownAsString;
+        $this->passUnknownAsKeyword = $passUnknownAsKeyword;
     }
 
     /**
@@ -285,8 +285,8 @@ class Builder
             }
         }
 
-        if ($this->passUnknownAsString) {
-            return $this->tagsTypes['string'];
+        if ($this->passUnknownAsKeyword) {
+            return $this->tagsTypes['keyword'];
         }
 
         throw new CupsException('Property not found: "'.$name.'".');
