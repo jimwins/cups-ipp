@@ -278,12 +278,13 @@ class Builder
                 if (!empty($this->tagsTypes[$tag])) {
                     return $this->tagsTypes[$tag];
                 } else {
-                    if ($this->passUnknownAsString) {
-                        return 'string';
-                    }
                     throw new CupsException('Type not found: "'.$tag.'".');
                 }
             }
+        }
+
+        if ($this->passUnknownAsString) {
+            return 'string';
         }
 
         throw new CupsException('Property not found: "'.$name.'".');
